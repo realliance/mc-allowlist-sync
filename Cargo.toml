@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 rcon = { version = "0.6", features = ["rt-tokio"] }
 tokio = { version = "1", features = ["full"] }
+openidconnect = "3.4"
