@@ -29,16 +29,16 @@ impl Allowlist {
     }
 
     pub async fn add(&mut self, name: String) -> Result<(), Error> {
-        self.0
-            .cmd(&format!("whitelist add {name}"))
-            .await
-            .map(|_| ())
+        let res = self.0.cmd(&format!("whitelist add {name}")).await?;
+
+        println!("{res}");
+        Ok(())
     }
 
     pub async fn remove(&mut self, name: String) -> Result<(), Error> {
-        self.0
-            .cmd(&format!("whitelist remove {name}"))
-            .await
-            .map(|_| ())
+        let res = self.0.cmd(&format!("whitelist remove {name}")).await?;
+
+        println!("{res}");
+        Ok(())
     }
 }
