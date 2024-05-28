@@ -41,8 +41,13 @@ pub struct PlayerData {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct DbData {
+    pub player: PlayerData,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct PlayerDb {
-    pub data: PlayerData,
+    pub data: DbData,
 }
 
 impl GroupUser {
@@ -65,7 +70,7 @@ impl GroupUser {
             .await?;
 
         Ok(Player {
-            name: player_db_res.data.username,
+            name: player_db_res.data.player.username,
         })
     }
 }
