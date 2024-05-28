@@ -1,0 +1,6 @@
+.vscode
+target
+.gitignore
+shell.nix
+Dockerfile
+rust-toolchain.toml

@@ -1,7 +1,7 @@
 use rcon::{Connection, Error};
 use tokio::net::TcpStream;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Player {
     pub name: String,
 }
@@ -26,5 +26,19 @@ impl Allowlist {
                 .collect();
             Ok(players)
         }
+    }
+
+    pub async fn add(&mut self, name: String) -> Result<(), Error> {
+        self.0
+            .cmd(&format!("whitelist add {name}"))
+            .await
+            .map(|_| ())
+    }
+
+    pub async fn remove(&mut self, name: String) -> Result<(), Error> {
+        self.0
+            .cmd(&format!("whitelist remove {name}"))
+            .await
+            .map(|_| ())
     }
 }

@@ -12,6 +12,9 @@ mkShell rec {
     clang
     llvmPackages.bintools
     rustup
+
+    # OpenSSL
+    openssl
   ];
 
   LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
