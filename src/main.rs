@@ -23,7 +23,11 @@ async fn main() -> Result<()> {
     let members = get_group_members(&token)
         .await?
         .into_iter()
-        .filter(|x| x.connections.is_some_and(|x| x.minecraft_uuid.is_some()))
+        .filter(|x| {
+            x.connections
+                .as_ref()
+                .is_some_and(|x| x.minecraft_uuid.is_some())
+        })
         .collect::<Vec<_>>();
     let member_len = members.len();
     println!(
