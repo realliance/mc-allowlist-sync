@@ -21,7 +21,11 @@ impl Allowlist {
             let players = player_list
                 .split(", ")
                 .map(|x| Player {
-                    name: x.to_string(),
+                    name: x
+                        .strip_suffix("\r\n")
+                        .or(x.strip_suffix("\n"))
+                        .unwrap_or(x)
+                        .to_string(),
                 })
                 .collect();
             Ok(players)
